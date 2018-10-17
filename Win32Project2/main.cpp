@@ -16,6 +16,8 @@
 	| float					| 32		| 7位有效位	|
 	| double				| 64		| 15位有效位	|
 	| long double			| 89		| 19位有效位	|
+
+	注：以上二进制位数仅供参考。
 */
 /*
 	| 数据类型	| 说明					|
@@ -143,7 +145,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					LPSTR lpszCmdLine,
 					int nCmdShow)
 {
-	HWND hwnd;
+	HWND hWnd;
 	MSG msg;
 	LPCWSTR szClassName = TEXT("窗口");		// 窗口类名
 	LPCWSTR szTitle = TEXT("WindowTitle");	// 窗口标题名
@@ -169,7 +171,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 
 	// 创建窗口
-	hwnd = CreateWindow(szClassName,		// 窗口类名
+	hWnd = CreateWindow(szClassName,		// 窗口类名
 						szTitle,			// 窗口实例的标题名
 						WS_OVERLAPPEDWINDOW,// 窗口的风格
 						CW_USEDEFAULT,		// 窗口左上角图标为默认值
@@ -181,7 +183,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 						hInstance,			// 创建此窗口的应用程序的当前句柄
 						NULL);				// 不使用该值
 	// 显示窗口
-	ShowWindow(hwnd, nCmdShow);
+	ShowWindow(hWnd, nCmdShow);
 	// 绘制用户区
 
 	// 消息循环
@@ -194,7 +196,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	return msg.wParam;	// 消息循环结束即程序终止时将信息返回系统
 }
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -202,7 +204,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 		break;
 		default:
-			return DefWindowProc(hwnd, message, wParam, lParam);
+			return DefWindowProc(hWnd, message, wParam, lParam);
 		break;
 	}
 	return 0;
