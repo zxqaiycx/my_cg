@@ -143,23 +143,23 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					LPSTR lpszCmdLine,
 					int nCmdShow)
 {
-	HWND hWnd;
+	HWND hwnd;
 	MSG msg;
 	LPCWSTR szClassName = TEXT("窗口");		// 窗口类名
 	LPCWSTR szTitle = TEXT("WindowTitle");	// 窗口标题名
 
 	// 初始化窗口类
 	WNDCLASS wc;
-	wc.style = 0;					// 窗口类型为默认类型
-	wc.lpfnWndProc = WndProc;		// 定义窗口处理函数
-	wc.cbClsExtra = 0;				// 窗口类无扩展
-	wc.cbWndExtra = 0;				// 窗口实例无扩展
-	wc.hInstance = hInstance;		// 当前实例句柄
-	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);	// 窗口的最小化图标为默认图标
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);	// 窗口采用箭头光标
+	wc.style = 0;											// 窗口类型为默认类型
+	wc.lpfnWndProc = WndProc;								// 定义窗口处理函数
+	wc.cbClsExtra = 0;										// 窗口类无扩展
+	wc.cbWndExtra = 0;										// 窗口实例无扩展
+	wc.hInstance = hInstance;								// 当前实例句柄
+	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);				// 窗口的最小化图标为默认图标
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);				// 窗口采用箭头光标
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);	// 注意类型转换；
-	wc.lpszMenuName = NULL;			// 窗口中无菜单
-	wc.lpszClassName = szClassName;	// 窗口类名为前述“窗口”
+	wc.lpszMenuName = NULL;									// 窗口中无菜单
+	wc.lpszClassName = szClassName;							// 窗口类名为前述“窗口”
 
 	// 注册窗口类
 	if (!RegisterClass(&wc))		// 如果注册失败则发出警告
@@ -169,7 +169,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 
 	// 创建窗口
-	hWnd = CreateWindow(szClassName,		// 窗口类名
+	hwnd = CreateWindow(szClassName,		// 窗口类名
 						szTitle,			// 窗口实例的标题名
 						WS_OVERLAPPEDWINDOW,// 窗口的风格
 						CW_USEDEFAULT,		// 窗口左上角图标为默认值
@@ -181,7 +181,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 						hInstance,			// 创建此窗口的应用程序的当前句柄
 						NULL);				// 不使用该值
 	// 显示窗口
-	ShowWindow(hWnd, nCmdShow);
+	ShowWindow(hwnd, nCmdShow);
 	// 绘制用户区
 
 	// 消息循环
@@ -194,7 +194,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	return msg.wParam;	// 消息循环结束即程序终止时将信息返回系统
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -202,7 +202,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			PostQuitMessage(0);
 		break;
 		default:
-			return DefWindowProc(hWnd, message, wParam, lParam);
+			return DefWindowProc(hwnd, message, wParam, lParam);
 		break;
 	}
 	return 0;
