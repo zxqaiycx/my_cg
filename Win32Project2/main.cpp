@@ -174,7 +174,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	hWnd = CreateWindow(szClassName,		// 窗口类名
 						szTitle,			// 窗口实例的标题名
 						WS_OVERLAPPEDWINDOW,// 窗口的风格
-						CW_USEDEFAULT,		// 窗口左上角图标为默认值
+						CW_USEDEFAULT,		// 窗口左上角坐标为默认值
 						CW_USEDEFAULT,
 						CW_USEDEFAULT,		// 窗口的宽高为默认值
 						CW_USEDEFAULT,
