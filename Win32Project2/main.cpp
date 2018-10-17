@@ -2,6 +2,37 @@
 // 来源：可视化编程课件
 // 说明：本程序用于说明创建Windows应用程序的方法及过程
 
+/*
+	| 基本数据类型			| 二进制位	| 值域		|	
+	| --------------------- | --------- | --------- |
+	| (signed) char			| 8			|			|
+	| unsigned char			| 8			|			|
+	| (signed) int			| 16		|			|
+	| unsigned int			| 16		|			|
+	| (signed) short int	| 16		|			|
+	| unsigned short int	| 16		|			|
+	| (signed) long int		| 32		|			|
+	| unsigned long int		| 32		|			|
+	| float					| 32		| 7位有效位	|
+	| double				| 64		| 15位有效位	|
+	| long double			| 89		| 19位有效位	|
+*/
+/*
+	| 数据类型	| 说明					|
+	| --------- | --------------------- |
+	| WORD		| 16位无符号整数			|
+	| LONG		| 32位有符号整数			|
+	| DWORD		| 32位无符号整数			|
+	| HANDLE	| 句柄					|
+	| UINT		| 32位无符号整数			|
+	| BOOL		| 布尔值					|
+	| LPTSTR	| 指向字符串的32位指针	|
+	| LPCTSTR	| 指向字符串常量的32位指针|
+*/
+/*
+	
+*/
+
 #include <Windows.h>
 
 // 函数的前向声明
