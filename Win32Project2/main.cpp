@@ -30,7 +30,84 @@
 	| LPCTSTR	| 指向字符串常量的32位指针|
 */
 /*
-	
+	# C++中的类与对象
+	面向对象程序设计方法的全新概念：类、封装（encapsulation）、
+	继承（inheritance）和多态（polymorphism）等。
+
+	## 类
+	一个类含有三部分：
+	* 私有（private）:成员（变量、函数）只能被本类的成员函数访问；
+	* 保护（protected）：成员可以被本类和派生类的成员函数访问，用于类的继承；
+	* 公共（public）：公共部分的成员可以被本类以外的函数访问，是类与外部的接口。
+
+	C++中通常也把类的成员函数称为类的方法。成员函数的原型一般在类的定义中声明。
+	方法的具体实现，可以在类的定义内部完成（有时也称为类的内联函数），也可以在类的定义之外进行，
+	方法的具体实现既可以和类的定义放在一个源文件中，也可以放在不同的源文件中。
+	方法的具体实现与普通函数的实现略有不同，如果方法的定义在类的外部实现，则在定义方法时必须把类名
+	放在方法名之前，中间用作用域运算符（::)隔开。
+
+	类也可以嵌套声明。
+
+	## 对象
+	C++中有两种方式定义类的对象：
+	* 在定义类的同时直接定义类的对象；
+	* 在定义类之后再定义类的对象。
+
+	## 内联函数
+	内联函数是指定义在类体内的成员函数，即该函数的函数体放在类体内。
+	内联函数在调用时不像一般的函数要转去执行被调用函数的函数体，执行完成后再转回调用函数处，
+	执行其后的语句，而是在调用函数处用内联函数体的代码来替换，这样将会提高运行速度。
+	因此内联函数主要是解决程序的运行效率问题。
+	注意，内联函数一定要在调用之前定义，并且内联函数无法递归调用。
+	C++中使用下面两种方式定义类的内联函数：
+	* 在类的外部定义时，把关键字加载函数定义之前。
+	```
+	class Angle {
+	public:
+		explicit Angle(const double xx) : _value(xx) {}
+		void SetValue(double);
+	private:
+		double _value;
+	};
+	inline void Angle::SetValue(double x)
+	{
+		_value = x;
+	}
+	```
+	* 把函数原型声明和方法的定义合并，放入类定义中。
+	```
+	class Angle {
+	public:
+		explicit Angle(const double xx) : _value(xx) {}
+		void SetValue(double x) { _value = x }
+	private:
+		double _value;
+	};
+	```
+*/
+/*
+	# 构造函数和析构函数
+	## 构造函数（Constructor）
+	* 构造函数有没有参数都可以，但不能没有返回值。
+	* 如果没有给类定义构造函数，编译系统将为类生成一个缺省的构造函数（将每个实例变量初始化为0）。
+	* 构造函数可以有缺省参数。
+	* 重载没有参数的构造函数和有缺省参数的构造函数时，有可能产生二义性。
+
+	## 析构函数（Destructor）
+	* 析构函数前面加~。
+	* 析构函数没有参数，没有返回值，也不能重载，一个类中只有一个析构函数。
+	* 析构函数用于释放分配给对象的内存空间。
+	* 大多数情况，缺省的析构函数就能满足要求。
+*/
+/*
+	# 重载
+	## 函数重载
+	函数重载时，要求函数的参数个数或参数类型不同。
+
+	## 操作符重载
+*/
+/*
+	# 友元
 */
 
 #include <Windows.h>
@@ -57,7 +134,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	wc.hInstance = hInstance;		// 当前实例句柄
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);	// 窗口的最小化图标为默认图标
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);	// 窗口采用箭头光标
-	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);	// 注意类型转换；窗口背景为白色，BLACK_BRUSH也可以
+	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);	// 注意类型转换；
 	wc.lpszMenuName = NULL;			// 窗口中无菜单
 	wc.lpszClassName = szClassName;	// 窗口类名为前述“窗口”
 
