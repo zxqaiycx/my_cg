@@ -1,2 +1,2 @@
 # my_cg
-MFCProject
+## MFCProject
