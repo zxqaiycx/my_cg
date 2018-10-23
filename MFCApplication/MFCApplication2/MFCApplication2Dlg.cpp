@@ -6,6 +6,7 @@
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
 #include "afxdialogex.h"
+#include <assert.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,6 +65,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_CALCULATOR, &CMFCApplication2Dlg::OnBnClickedCalculator)
+	ON_BN_CLICKED(IDC_NOTEPAD, &CMFCApplication2Dlg::OnBnClickedNotepad)
+	ON_BN_CLICKED(IDC_NSLOOKUP, &CMFCApplication2Dlg::OnBnClickedNslookup)
 END_MESSAGE_MAP()
 
 
@@ -152,3 +156,24 @@ HCURSOR CMFCApplication2Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CMFCApplication2Dlg::OnBnClickedCalculator()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	HINSTANCE hRslt = ShellExecute(NULL, _T("open"), _T("calc.exe"), NULL, NULL, SW_SHOWNORMAL);
+	assert(hRslt > (HINSTANCE)HINSTANCE_ERROR);
+}
+
+void CMFCApplication2Dlg::OnBnClickedNotepad()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	HINSTANCE hRslt = ShellExecute(NULL, _T("open"), _T("notepad.exe"), NULL, NULL, SW_SHOWNORMAL);
+	assert(hRslt > (HINSTANCE)HINSTANCE_ERROR);
+}
+
+
+void CMFCApplication2Dlg::OnBnClickedNslookup()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	HINSTANCE hRslt = ShellExecute(NULL, _T("open"), _T("nslookup.exe"), NULL, NULL, SW_SHOWNORMAL);
+	assert(hRslt > (HINSTANCE)HINSTANCE_ERROR);
+}
