@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D5697EE2-017A-4171-AF03-69F8C7373891}</ProjectGuid>
-    <RootNamespace>MFCApp12</RootNamespace>
+    <ProjectGuid>{FCA86E32-3E73-4AD9-AF56-0EA8B8BB6DFA}</ProjectGuid>
+    <RootNamespace>MFCApp21</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <Keyword>MFCProj</Keyword>
   </PropertyGroup>
@@ -185,15 +185,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MFCApp12.h" />
-    <ClInclude Include="MFCApp12Dlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MFCApp21.h" />
+    <ClInclude Include="MFCApp21Doc.h" />
+    <ClInclude Include="MFCApp21View.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MFCApp12.cpp" />
-    <ClCompile Include="MFCApp12Dlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MFCApp21.cpp" />
+    <ClCompile Include="MFCApp21Doc.cpp" />
+    <ClCompile Include="MFCApp21View.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -202,21 +206,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MFCApp12.rc" />
+    <ResourceCompile Include="MFCApp21.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="res\MFCApp12.rc2" />
+    <None Include="res\MFCApp21.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\MFCApp12.ico" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\MFCApp21.ico" />
+    <Image Include="res\MFCApp21Doc.ico" />
+    <Image Include="res\Toolbar.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="MFCApp12.rc" />
+      <UserProperties RESOURCE_FILE="MFCApp21.rc" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
