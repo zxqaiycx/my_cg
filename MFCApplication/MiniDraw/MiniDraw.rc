@@ -81,7 +81,7 @@ IDR_MiniDrawTYPE        ICON                    "res\\MiniDrawDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
-IDR_TOOLBAR1            BITMAP                  "res\\toolbar1.bmp"
+IDR_TOOLBAR_FIGURE      BITMAP                  "res\\toolbar_figure.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,10 +103,13 @@ BEGIN
     BUTTON      ID_APP_ABOUT
 END
 
-IDR_TOOLBAR1 TOOLBAR 16, 15
+IDR_TOOLBAR_FIGURE TOOLBAR 16, 15
 BEGIN
-    BUTTON      ID_BUTTONLINE
-    BUTTON      ID_BUTTONELLIPSE
+    BUTTON      ID_BUTTON_LINE
+    BUTTON      ID_BUTTON_ELLIPSE
+    BUTTON      ID_BUTTON_RECT
+    BUTTON      ID_BUTTON_POLYGON
+    BUTTON      ID_BUTTON_FREEHAND
 END
 
 
@@ -374,6 +377,15 @@ END
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预览"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_FREEHAND      "Draw what you want"
+    ID_BUTTON_POLYGON       "Draw a polygon"
+    ID_BUTTON_RECT          "Draw a rectangle"
+    ID_BUTTON_ELLIPSE       "Draw a ellipse"
+    ID_BUTTON_LINE          "Draw a line"
 END
 
 #endif    // 中文(简体，中国) resources
