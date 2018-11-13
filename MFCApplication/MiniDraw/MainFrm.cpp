@@ -66,6 +66,27 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
+	// 创建自定义的画图工具栏
+	if (!m_figureToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC)
+		|| !m_figureToolBar.LoadToolBar(IDR_TOOLBAR_FIGURE))
+	{
+		TRACE0("未能创建画图工具栏\n");
+		return -1;      // 未能创建
+	}
+	// 使画图工具栏可停靠
+	m_figureToolBar.SetWindowTextW(_T("画图工具栏"));
+	m_figureToolBar.EnableDocking(CBRS_ALIGN_ANY);
+	EnableDocking(CBRS_ALIGN_ANY);
+	DockControlBar(&m_figureToolBar);
+
+	// 重新布局，使多个工具栏停靠在一行
+	this->RecalcLayout();	// 重新排列
+	CRect rect;
+	m_wndToolBar.GetWindowRect(&rect);
+	rect.OffsetRect(1, 0);
+	DockControlBar(&m_figureToolBar, AFX_IDW_DOCKBAR_TOP, &rect);
+	/*rect.OffsetRect(2, 0);
+	DockControlBar(&m_3rdToolBar, AFX_IDW_DOCKBAR_TOP, &rect);*/
 
 	return 0;
 }

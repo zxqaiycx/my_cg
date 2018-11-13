@@ -46,7 +46,19 @@ protected:
 
 private:
 	std::vector<CFigure *> m_FigArray;
-	UINT m_CurrentTool;	//图形类型
+	UINT m_CurrentTool;	// 图形类型
+	UINT m_Dragging;	// 是否在拖动鼠标
+	CPoint m_PointOld;
+	CPoint m_PointOrigin;
+public:
+	afx_msg void OnButtonLine();
+	afx_msg void OnButtonEllipse();
+	afx_msg void OnButtonRect();
+	afx_msg void OnButtonPolygon();
+	afx_msg void OnButtonFreehand();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // MiniDrawView.cpp 中的调试版本

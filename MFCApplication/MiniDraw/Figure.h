@@ -5,7 +5,7 @@
 #pragma once
 
 
-//CFigure类：各种图形类的子类
+// CFigure类：各种图形类的子类
 class CFigure
 {
 public:
@@ -15,8 +15,8 @@ public:
 };
 
 
-//线段
-class CLine : CFigure
+// 线段
+class CLine : public CFigure
 {
 public:
 	CLine();
@@ -25,13 +25,13 @@ public:
 public:
 	void Draw(CDC *pDC);
 private:
-	int m_x1, m_y1,	//起点
-		m_x2, m_y2;	//终点
+	int m_x1, m_y1,	// 起点
+		m_x2, m_y2;	// 终点
 };
 
 
-//椭圆
-class CEllipse : CFigure
+// 椭圆
+class CEllipse : public CFigure
 {
 public:
 	CEllipse();
@@ -40,6 +40,6 @@ public:
 public:
 	void Draw(CDC *pDC);
 private:
-	int m_x1, m_y1,	//椭圆最左、最上
-		m_x2, m_y2;	//椭圆最右、最下
+	int m_x1, m_y1,	// 椭圆最左、最上
+		m_x2, m_y2;	// 椭圆最右、最下
 };

@@ -6,14 +6,14 @@
 #include "Figure.h"
 
 
-//以下为CFigure类的实现
+// 以下为CFigure类的实现
 
 CFigure::CFigure() {}
 
 void CFigure::Draw(CDC *pDC) {}
 
 
-//以下为CLine类的实现
+// 以下为CLine类的实现
 
 CLine::CLine() {}
 
@@ -27,7 +27,7 @@ void CLine::Draw(CDC *pDC)
 }
 
 
-//以下为CEllipse类的实现
+// 以下为CEllipse类的实现
 
 CEllipse::CEllipse() {}
 

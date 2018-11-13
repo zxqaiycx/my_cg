@@ -83,7 +83,7 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="res\toolbar1.bmp">
+    <Image Include="res\toolbar_figure.bmp">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
