@@ -46,11 +46,12 @@ protected:
 
 // 自定义部分
 private:
-	std::vector<MyFigure *> m_FigArray;
-	UINT m_uCurrentTool;	// 图形类型
-	BOOL m_bDragging;		// 是否在拖动鼠标
-	CPoint m_PointOrigin;	// 起点
-	CPoint m_PointPrev;		// 上一次的终点
+	std::vector<MyFigure *> m_FigArray;	// 存储所有已绘制图形对象的指针
+	std::vector<CPoint> m_PointsPoly;	// 绘制多边形时暂存顶点
+	UINT m_uCurrentTool;				// 图形类型
+	BOOL m_bDragging;					// 是否在拖动鼠标
+	CPoint m_PointOrigin;				// 起点
+	CPoint m_PointPrev;					// 上一次的终点
 public:
 	afx_msg void OnButtonLine();
 	afx_msg void OnButtonEllipse();
@@ -60,7 +61,8 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+//	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // MiniDrawView.cpp 中的调试版本

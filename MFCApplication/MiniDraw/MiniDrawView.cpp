@@ -35,15 +35,19 @@ BEGIN_MESSAGE_MAP(CMiniDrawView, CView)
 //	ON_WM_LBUTTONUP()
 ON_WM_MOUSEMOVE()
 ON_WM_LBUTTONUP()
-ON_WM_LBUTTONDBLCLK()
+//ON_WM_LBUTTONDBLCLK()
+ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CMiniDrawView 构造/析构
 
 CMiniDrawView::CMiniDrawView()
-	: m_bDragging(false), m_uCurrentTool(ID_BUTTON_LINE)
 {
 	// TODO: 在此处添加构造代码
+	m_FigArray.clear();
+	m_PointsPoly.clear();
+	m_uCurrentTool = ID_BUTTON_LINE;
+	m_bDragging = false;
 }
 
 CMiniDrawView::~CMiniDrawView()
@@ -157,8 +161,6 @@ void CMiniDrawView::OnButtonPolygon()
 {
 	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_POLYGON;
-	MyFigure *pFig = new MyPolygon;
-	m_FigArray.push_back(pFig);
 }
 
 
@@ -180,8 +182,7 @@ void CMiniDrawView::OnLButtonDown(UINT nFlags, CPoint point)
 	switch (m_uCurrentTool)
 	{
 	case ID_BUTTON_POLYGON:
-		pFig = m_FigArray.back();
-		pFig->AddPoint(point);
+		m_PointsPoly.push_back(point);
 		break;
 	case ID_BUTTON_FREEHAND:
 		pFig = new MyFreehand(point);
@@ -302,7 +303,38 @@ void CMiniDrawView::OnLButtonUp(UINT nFlags, CPoint point)
 }
 
 
-void CMiniDrawView::OnLButtonDblClk(UINT nFlags, CPoint point)
+//void CMiniDrawView::OnLButtonDblClk(UINT nFlags, CPoint point)
+//{
+//	// TODO: 在此添加消息处理程序代码和/或调用默认值
+//
+//	// 用于画多边形时终止选点
+//	CClientDC clientDC(this);
+//	clientDC.SelectStockObject(NULL_BRUSH);
+//	MyFigure *pFig = NULL;
+//	switch (m_uCurrentTool)
+//	{
+//	case ID_BUTTON_POLYGON:
+//		// 鼠标指针拖动状态设为false
+//		m_bDragging = false;
+//		// 清除最后一条多余的线
+//		/*clientDC.SetROP2(R2_NOT);
+//		clientDC.MoveTo(m_PointOrigin);
+//		clientDC.LineTo(m_PointPrev);*/
+//		// 绘制多边形
+//		m_FigArray.back()->Draw(&clientDC);
+//		// new下一个多边形对象的指针并存入m_FigArray
+//		pFig = new MyPolygon;
+//		m_FigArray.push_back(pFig);
+//		break;
+//	default:
+//		break;
+//	}
+//
+//	CView::OnLButtonDblClk(nFlags, point);
+//}
+
+
+void CMiniDrawView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 
@@ -316,18 +348,23 @@ void CMiniDrawView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		// 鼠标指针拖动状态设为false
 		m_bDragging = false;
 		// 清除最后一条多余的线
-		/*clientDC.SetROP2(R2_NOT);
+		clientDC.SetROP2(R2_NOT);
 		clientDC.MoveTo(m_PointOrigin);
-		clientDC.LineTo(m_PointPrev);*/
-		// 绘制多边形
-		m_FigArray.back()->Draw(&clientDC);
-		// new下一个多边形对象的指针并存入m_FigArray
+		clientDC.LineTo(m_PointPrev);
+		// 存储并绘制多边形
 		pFig = new MyPolygon;
+		for (unsigned i = 0; i < m_PointsPoly.size(); ++i)
+		{
+			pFig->AddPoint(m_PointsPoly[i]);
+		}
+		m_PointsPoly.clear();
 		m_FigArray.push_back(pFig);
+		clientDC.SetROP2(R2_COPYPEN);
+		m_FigArray.back()->Draw(&clientDC);
 		break;
 	default:
 		break;
 	}
 
-	CView::OnLButtonDblClk(nFlags, point);
+	CView::OnRButtonDown(nFlags, point);
 }

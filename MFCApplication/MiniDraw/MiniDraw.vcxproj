@@ -211,6 +211,7 @@
     <ResourceCompile Include="MiniDraw.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="res\MiniDraw.rc2" />
   </ItemGroup>
   <ItemGroup>
