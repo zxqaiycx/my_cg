@@ -303,37 +303,6 @@ void CMiniDrawView::OnLButtonUp(UINT nFlags, CPoint point)
 }
 
 
-//void CMiniDrawView::OnLButtonDblClk(UINT nFlags, CPoint point)
-//{
-//	// TODO: 在此添加消息处理程序代码和/或调用默认值
-//
-//	// 用于画多边形时终止选点
-//	CClientDC clientDC(this);
-//	clientDC.SelectStockObject(NULL_BRUSH);
-//	MyFigure *pFig = NULL;
-//	switch (m_uCurrentTool)
-//	{
-//	case ID_BUTTON_POLYGON:
-//		// 鼠标指针拖动状态设为false
-//		m_bDragging = false;
-//		// 清除最后一条多余的线
-//		/*clientDC.SetROP2(R2_NOT);
-//		clientDC.MoveTo(m_PointOrigin);
-//		clientDC.LineTo(m_PointPrev);*/
-//		// 绘制多边形
-//		m_FigArray.back()->Draw(&clientDC);
-//		// new下一个多边形对象的指针并存入m_FigArray
-//		pFig = new MyPolygon;
-//		m_FigArray.push_back(pFig);
-//		break;
-//	default:
-//		break;
-//	}
-//
-//	CView::OnLButtonDblClk(nFlags, point);
-//}
-
-
 void CMiniDrawView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
