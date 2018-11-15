@@ -37,6 +37,8 @@ ON_WM_MOUSEMOVE()
 ON_WM_LBUTTONUP()
 //ON_WM_LBUTTONDBLCLK()
 ON_WM_RBUTTONDOWN()
+ON_COMMAND(ID_BUTTON_UNDO, &CMiniDrawView::OnButtonUndo)
+ON_COMMAND(ID_BUTTON_CLEAR, &CMiniDrawView::OnButtonClear)
 END_MESSAGE_MAP()
 
 // CMiniDrawView 构造/析构
@@ -138,42 +140,36 @@ CMiniDrawDoc* CMiniDrawView::GetDocument() const // 非调试版本是内联的
 
 void CMiniDrawView::OnButtonLine()
 {
-	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_LINE;
 }
 
 
 void CMiniDrawView::OnButtonEllipse()
 {
-	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_ELLIPSE;
 }
 
 
 void CMiniDrawView::OnButtonRect()
 {
-	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_RECT;
 }
 
 
 void CMiniDrawView::OnButtonPolygon()
 {
-	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_POLYGON;
 }
 
 
 void CMiniDrawView::OnButtonFreehand()
 {
-	// TODO: 在此添加命令处理程序代码
 	m_uCurrentTool = ID_BUTTON_FREEHAND;
 }
 
 
 void CMiniDrawView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	m_PointOrigin = point;
 	m_PointPrev = point;
 	m_bDragging = true;
@@ -198,7 +194,6 @@ void CMiniDrawView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CMiniDrawView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if (!m_bDragging)
 	{
 		return;
@@ -254,7 +249,6 @@ void CMiniDrawView::OnMouseMove(UINT nFlags, CPoint point)
 
 void CMiniDrawView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
 	if (!m_bDragging)
 	{
 		return;
@@ -305,8 +299,6 @@ void CMiniDrawView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CMiniDrawView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
 	// 用于画多边形时终止选点
 	CClientDC clientDC(this);
 	clientDC.SelectStockObject(NULL_BRUSH);
@@ -336,4 +328,28 @@ void CMiniDrawView::OnRButtonDown(UINT nFlags, CPoint point)
 	}
 
 	CView::OnRButtonDown(nFlags, point);
+}
+
+
+void CMiniDrawView::OnButtonUndo()
+{
+	if (m_FigArray.size() > 0)
+	{
+		m_FigArray.pop_back();
+		// 重绘客户区
+		CRect rect;
+		GetClientRect(&rect);
+		InvalidateRect(rect);
+	}
+}
+
+
+void CMiniDrawView::OnButtonClear()
+{
+	m_FigArray.clear();
+	m_FigArray.shrink_to_fit();
+	// 重绘客户区
+	CRect rect;
+	GetClientRect(&rect);
+	InvalidateRect(rect);
 }

@@ -7,18 +7,20 @@
 #define IDR_MAINFRAME                   128
 #define IDR_MiniDrawTYPE                130
 #define IDR_TOOLBAR_FIGURE              313
-#define ID_BUTTON_LINE					32779
+#define ID_BUTTON_LINE                  32779
 #define ID_BUTTON_ELLIPSE               32780
 #define ID_BUTTON_RECT                  32781
-#define ID_BUTTON_POLYGON				32782
-#define ID_BUTTON_FREEHAND				32783
+#define ID_BUTTON_POLYGON               32782
+#define ID_BUTTON_FREEHAND              32783
+#define ID_BUTTON_UNDO                  32784
+#define ID_BUTTON_CLEAR                 32785
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        322
-#define _APS_NEXT_COMMAND_VALUE         32784
+#define _APS_NEXT_COMMAND_VALUE         32787
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

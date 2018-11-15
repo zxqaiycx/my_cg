@@ -62,6 +62,8 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnButtonUndo();
+	afx_msg void OnButtonClear();
 };
 
 #ifndef _DEBUG  // MiniDrawView.cpp 中的调试版本

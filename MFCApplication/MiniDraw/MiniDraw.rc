@@ -110,6 +110,9 @@ BEGIN
     BUTTON      ID_BUTTON_RECT
     BUTTON      ID_BUTTON_POLYGON
     BUTTON      ID_BUTTON_FREEHAND
+    SEPARATOR
+    BUTTON      ID_BUTTON_UNDO
+    BUTTON      ID_BUTTON_CLEAR
 END
 
 
@@ -381,11 +384,17 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_BUTTON_FREEHAND      "Draw what you want"
-    ID_BUTTON_POLYGON       "Draw a polygon"
-    ID_BUTTON_RECT          "Draw a rectangle"
-    ID_BUTTON_ELLIPSE       "Draw a ellipse"
-    ID_BUTTON_LINE          "Draw a line"
+    ID_BUTTON_LINE          "直线"
+    ID_BUTTON_ELLIPSE       "椭圆"
+    ID_BUTTON_RECT          "矩形"
+    ID_BUTTON_POLYGON       "多边形"
+    ID_BUTTON_FREEHAND      "自由手绘线"
+END
+
+STRINGTABLE
+BEGIN
+    ID_BUTTON_UNDO          "撤销上一个图形"
+    ID_BUTTON_CLEAR         "清屏"
 END
 
 #endif    // 中文(简体，中国) resources
