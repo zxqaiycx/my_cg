@@ -4,13 +4,6 @@
 
 #pragma once
 
-#include "gl/glut.h"
-
-//#ifdef _MSC_VER                         // Check if MS Visual C compiler
-//#  pragma comment(lib, "opengl32.lib")  // Compiler-specific directive to avoid manually configuration
-//#  pragma comment(lib, "glu32.lib")     // Link libraries
-//#  pragma comment(lib, "glut32.lib")
-//#endif
 
 class CGLFrameView : public CView
 {
