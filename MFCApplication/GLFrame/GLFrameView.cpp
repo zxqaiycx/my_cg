@@ -42,6 +42,10 @@ CGLFrameView::~CGLFrameView()
 BOOL CGLFrameView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: 在此处通过修改CREATESTRUCT cs 来修改窗口类或样式
+
+    // OpenGL需要窗口加上
+    // WS_CLIPCHILDREN（创建父窗口使用的Windows风格，用于重绘时裁剪子窗口所覆盖的区域）
+    // 和 WS_CLIPSIBLINGS（创建子窗口使用的Windows风格，用于重绘时剪裁其他子窗口所覆盖的区域）风格
     cs.style |= WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
 	return CView::PreCreateWindow(cs);
@@ -57,6 +61,7 @@ void CGLFrameView::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: 在此处为本机数据添加绘制代码
+
     // 清除颜色、深度缓存
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -99,6 +104,8 @@ int CGLFrameView::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
 
     // TODO:  在此添加您专用的创建代码
+
+    // 定义窗口的像素格式
     PIXELFORMATDESCRIPTOR pfd =  
     {  
         sizeof(PIXELFORMATDESCRIPTOR),   // pfd结构的大小                               
