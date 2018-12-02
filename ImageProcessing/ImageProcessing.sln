@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColorTransfer", "ColorTransfer\ColorTransfer.vcxproj", "{A5D0AE28-D2A5-497C-B56C-14ADC479330D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageWarping", "ImageWarping\ImageWarping.vcxproj", "{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{A5D0AE28-D2A5-497C-B56C-14ADC479330D}.Release|x64.Build.0 = Release|x64
 		{A5D0AE28-D2A5-497C-B56C-14ADC479330D}.Release|x86.ActiveCfg = Release|Win32
 		{A5D0AE28-D2A5-497C-B56C-14ADC479330D}.Release|x86.Build.0 = Release|Win32
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Debug|x64.ActiveCfg = Debug|x64
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Debug|x64.Build.0 = Debug|x64
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Debug|x86.Build.0 = Debug|Win32
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Release|x64.ActiveCfg = Release|x64
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Release|x64.Build.0 = Release|x64
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Release|x86.ActiveCfg = Release|Win32
+		{CBFB2B38-35BA-495A-81FE-1842FC8BDCDB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
