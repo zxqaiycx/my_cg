@@ -53,10 +53,7 @@ void MyRect::Draw(CDC *pDC)
 
 // MyPolygon的实现
 
-MyPolygon::MyPolygon()
-{
-	m_points.clear();
-}
+MyPolygon::MyPolygon() {}
 
 MyPolygon::MyPolygon(const CPoint& pointToAdd)
 {
@@ -64,11 +61,7 @@ MyPolygon::MyPolygon(const CPoint& pointToAdd)
 	m_points.push_back(pointToAdd);
 }
 
-MyPolygon::~MyPolygon()
-{
-	m_points.clear();
-	m_points.shrink_to_fit();
-}
+MyPolygon::~MyPolygon() {}
 
 void MyPolygon::Draw(CDC *pDC)
 {
@@ -89,10 +82,7 @@ void MyPolygon::AddPoint(const CPoint& pointToAdd)
 
 // MyFreehand的实现
 
-MyFreehand::MyFreehand()
-{
-	m_points.clear();
-}
+MyFreehand::MyFreehand() {}
 
 MyFreehand::MyFreehand(const CPoint& pointToAdd)
 {
@@ -100,11 +90,7 @@ MyFreehand::MyFreehand(const CPoint& pointToAdd)
 	m_points.push_back(pointToAdd);
 }
 
-MyFreehand::~MyFreehand()
-{
-	m_points.clear();
-	m_points.shrink_to_fit();
-}
+MyFreehand::~MyFreehand() {}
 
 void MyFreehand::Draw(CDC *pDC)
 {
