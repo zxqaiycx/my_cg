@@ -1,10 +1,12 @@
 #pragma once
 
+#include <math.h>
 #include <vector>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 using std::vector;
 using cv::Point;
+using cv::Point2d;
 
 #pragma comment(lib, "opencv_world331d.lib")
 
@@ -22,8 +24,9 @@ public:
     Point F(const Point& p, const bool simple = true);
 
 private:
+    double Distance(const Point& p1, const Point& p2);
     double Wi(const int i, const Point& p);
-    double Fi(const int i, const Point& p, const bool simple = true);
+    Point2d Fi(const int i, const Point& p, const bool simple = true);
 
 private:
     vector<Point> p_points_;

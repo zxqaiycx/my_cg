@@ -148,9 +148,14 @@
   <ItemGroup>
     <ClCompile Include="IDW.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Operation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IDW.h" />
+    <ClInclude Include="Operation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="monalisa.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

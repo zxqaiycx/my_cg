@@ -11,10 +11,28 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
-#include "IDW.h"
+#include "Operation.h"
 using namespace cv;
+
+Operation *gPtr;
+
+void onMouse(int event, int x, int y, int flags, void* param)
+{
+    gPtr->OnMouse(event, x, y, flags, param);
+}
 
 int main()
 {
+    Mat img = imread("monalisa.jpg", 1);
+    std::string windowName("ImageWarping");
+    namedWindow(windowName);
+
+    Operation op(img, windowName);
+    gPtr = &op;
+
+    setMouseCallback(windowName, onMouse, 0);
+
+    waitKey();
+
     return 0;
 }
