@@ -23,7 +23,7 @@ public:
 
 private:
     double Wi(const int i, const Point& p);
-    double Fi(const int i, const Point& p);
+    double Fi(const int i, const Point& p, const bool simple = true);
 
 private:
     vector<Point> p_points_;
