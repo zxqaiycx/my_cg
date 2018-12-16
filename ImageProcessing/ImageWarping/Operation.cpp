@@ -94,6 +94,7 @@ void Operation::OnMouse(int event, int x, int y, int flags, void* param)
         else // 从头重来一次图像扭曲
         {
             isInput_ = true;
+            dstImage_ = (Mat(srcImage_.size(), srcImage_.type(), Scalar::all(255))).clone();
             showImage_ = srcImage_.clone();
             p_.swap(vector<Point>());
             q_.swap(vector<Point>());
@@ -120,7 +121,7 @@ void Operation::Show()
 
 void Operation::WarpingIDW()
 {
-    IDW idw(p_, q_, 2.);
+    IDW idw(p_, q_, 6.);    // 这里u的值应该很关键
 
     int nrow = srcImage_.rows;  // height
     int ncol = srcImage_.cols;  // width
