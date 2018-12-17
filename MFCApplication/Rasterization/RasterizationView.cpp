@@ -244,10 +244,11 @@ void CRasterizationView::OnLButtonUp(UINT nFlags, CPoint point)
     switch (m_uCurrentTool)
     {
     case ID_BUTTON_LINE:
+        clientDC.SetROP2(R2_NOT);
+        clientDC.MoveTo(m_PointOrigin);
+        clientDC.LineTo(m_PointPrev);
         clientDC.SetROP2(R2_COPYPEN);
-        //clientDC.MoveTo(m_PointOrigin);
-        //clientDC.LineTo(m_PointPrev);
-        pFig = new MyLine(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y, 0);
+        pFig = new MyLine(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 2);
         pFig->Draw(&clientDC);
         m_FigArray.push_back(pFig);
         break;
