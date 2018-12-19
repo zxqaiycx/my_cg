@@ -405,7 +405,28 @@ void MyCircle::ScanConversion(CDC *pDC)
     }
     else if (3 == m_type)   // 正负法
     {
+        int x = 0, y = R;
+        int d = 0;
 
+        while (y >= 0)  // 绘制右上1/4圆弧
+        {
+            // 四分画圆
+            pDC->SetPixel(x0 + x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 - y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + x, y0 - y, RGB(255, 0, 0));
+
+            if (d <= 0)
+            {
+                d = d + 2 * x + 1;
+                ++x;    // 向右走
+            }
+            else
+            {
+                d = d - 2 * y + 1;
+                --y;    // 向下走
+            }
+        }
     }
     else
     {
