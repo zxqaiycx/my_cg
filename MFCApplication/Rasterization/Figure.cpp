@@ -347,7 +347,32 @@ void MyCircle::ScanConversion(CDC *pDC)
     }
     else if (1 == m_type)   // 中点画圆法
     {
+        int x = 0, y = R;
+        float d = 1.25f - R;
 
+        while (x <= y)
+        {
+            // 八分画圆
+            pDC->SetPixel(x0 + x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - y, y0 + x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - y, y0 - x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 - y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + x, y0 - y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + y, y0 - x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + y, y0 + x, RGB(255, 0, 0));
+
+            if (d < 0)
+            {
+                d = d + 2 * x + 3;
+                ++x;
+            }
+            else
+            {
+                d = d + 2 * (x - y) + 5;
+                ++x, --y;
+            }
+        }
     }
     else if (2 == m_type)   // Bresenham画圆法
     {

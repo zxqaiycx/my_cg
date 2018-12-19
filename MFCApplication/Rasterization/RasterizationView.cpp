@@ -266,7 +266,7 @@ void CRasterizationView::OnLButtonUp(UINT nFlags, CPoint point)
         clientDC.SetROP2(R2_NOT);
         clientDC.Ellipse(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y);
         clientDC.SetROP2(R2_COPYPEN);
-        pFig = new MyCircle(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 2);
+        pFig = new MyCircle(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 1);
         pFig->Draw(&clientDC);
         m_FigArray.push_back(pFig);
         break;
