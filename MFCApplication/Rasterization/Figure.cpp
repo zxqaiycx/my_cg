@@ -311,7 +311,7 @@ void MyEllipse::Draw(CDC *pDC)
 }
 
 
-// MyEllipse类的实现
+// MyCircle类的实现
 
 MyCircle::MyCircle(int x1, int y1, int x2, int y2, int type)
 {
@@ -338,9 +338,12 @@ void MyCircle::Draw(CDC *pDC)
 
 void MyCircle::ScanConversion(CDC *pDC)
 {
+    int x0 = m_x0, y0 = m_y0;
+    int R = m_radius;
+
     if (0 == m_type)
     {
-        pDC->Ellipse(m_x0 - m_radius, m_y0 - m_radius, m_x0 + m_radius, m_y0 + m_radius);
+        pDC->Ellipse(x0 - R, y0 - R, x0 + R, y0 + R);
     }
     else if (1 == m_type)   // 中点画圆法
     {
@@ -348,7 +351,32 @@ void MyCircle::ScanConversion(CDC *pDC)
     }
     else if (2 == m_type)   // Bresenham画圆法
     {
+        int x = 0, y = R;
+        int d = 3 - 2 * y;
 
+        while (x <= y)
+        {
+            // 八分画圆
+            pDC->SetPixel(x0 + x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 + y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - y, y0 + x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - y, y0 - x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 - x, y0 - y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + x, y0 - y, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + y, y0 - x, RGB(255, 0, 0));
+            pDC->SetPixel(x0 + y, y0 + x, RGB(255, 0, 0));
+
+            if (d < 0)
+            {
+                d = d + 4 * x + 6;
+                ++x;
+            }
+            else
+            {
+                d = d + 4 * (x - y) + 10;
+                ++x, --y;
+            }
+        }
     }
     else if (3 == m_type)   // 正负法
     {
@@ -356,7 +384,7 @@ void MyCircle::ScanConversion(CDC *pDC)
     }
     else
     {
-
+        pDC->Ellipse(x0 - R, y0 - R, x0 + R, y0 + R);
     }
 }
 

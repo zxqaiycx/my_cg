@@ -259,9 +259,15 @@ void CRasterizationView::OnLButtonUp(UINT nFlags, CPoint point)
         m_FigArray.push_back(pFig);
         break;
     case ID_BUTTON_ELLIPSE:
-        clientDC.SetROP2(R2_COPYPEN);
+        //clientDC.SetROP2(R2_COPYPEN);
+        //clientDC.Ellipse(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y);
+        //pFig = new MyEllipse(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y);
+        //m_FigArray.push_back(pFig);
+        clientDC.SetROP2(R2_NOT);
         clientDC.Ellipse(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y);
-        pFig = new MyEllipse(m_PointOrigin.x, m_PointOrigin.y, m_PointPrev.x, m_PointPrev.y);
+        clientDC.SetROP2(R2_COPYPEN);
+        pFig = new MyCircle(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 2);
+        pFig->Draw(&clientDC);
         m_FigArray.push_back(pFig);
         break;
     case ID_BUTTON_RECT:
