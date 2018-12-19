@@ -130,26 +130,31 @@ CRasterizationDoc* CRasterizationView::GetDocument() const // 非调试版本是内联的
 void CRasterizationView::OnButtonLine()
 {
     m_uCurrentTool = ID_BUTTON_LINE;
+    m_bDragging = false;
 }
 
 void CRasterizationView::OnButtonEllipse()
 {
     m_uCurrentTool = ID_BUTTON_ELLIPSE;
+    m_bDragging = false;
 }
 
 void CRasterizationView::OnButtonRect()
 {
     m_uCurrentTool = ID_BUTTON_RECT;
+    m_bDragging = false;
 }
 
 void CRasterizationView::OnButtonPolygon()
 {
     m_uCurrentTool = ID_BUTTON_POLYGON;
+    m_bDragging = false;
 }
 
 void CRasterizationView::OnButtonFreehand()
 {
     m_uCurrentTool = ID_BUTTON_FREEHAND;
+    m_bDragging = false;
 }
 
 void CRasterizationView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -244,11 +249,12 @@ void CRasterizationView::OnLButtonUp(UINT nFlags, CPoint point)
     switch (m_uCurrentTool)
     {
     case ID_BUTTON_LINE:
-        clientDC.SetROP2(R2_NOT);
+        clientDC.SetROP2(R2_NOT);       // 画一次为默认画笔颜色，画两次有擦出效果
+        //clientDC.SetROP2(R2_NOTXORPEN); // 画一次为所选画笔颜色，画两次有擦除效果
         clientDC.MoveTo(m_PointOrigin);
         clientDC.LineTo(m_PointPrev);
-        clientDC.SetROP2(R2_COPYPEN);
-        pFig = new MyLine(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 2);
+        clientDC.SetROP2(R2_COPYPEN);   // 使用当前画笔颜色
+        pFig = new MyLine(m_PointOrigin.x, m_PointOrigin.y, point.x, point.y, 3);
         pFig->Draw(&clientDC);
         m_FigArray.push_back(pFig);
         break;

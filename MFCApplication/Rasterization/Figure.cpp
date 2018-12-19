@@ -43,7 +43,7 @@ void MyLine::ScanConversion(CDC *pDC)
         pDC->MoveTo(x1, y1);
         pDC->LineTo(x2, y2);
     }
-    else if (1 == m_type)   // DDA
+    else if (1 == m_type)   // DDA（写得不好，未考虑斜率正负）
     {
         if (abs(x1 - x2) >= abs(y1 - y2))   // 斜率绝对值小于等于1
         {
@@ -82,10 +82,11 @@ void MyLine::ScanConversion(CDC *pDC)
             }
         }
     }
-    else if (2 == m_type)   // 中点画线法
+    else if (2 == m_type)   // 中点画线法（写得不好）
     {
         // F(x, y) = ax + by + c
         // a = y1 - y2; b = x2 - x1; c = x1y2 - x2y1;
+        // 以下的左右方向是对常见的平面直角坐标系来说
 
         if (abs(x1 - x2) >= abs(y1 - y2))   // 斜率绝对值小于等于1
         {
@@ -97,7 +98,7 @@ void MyLine::ScanConversion(CDC *pDC)
                 y2 = m_y1;
             }
 
-            if (y2 > y1)    // 斜率为正
+            if (y2 >= y1)    // 斜率非负
             {
                 int a, b, d, d1, d2, x, y;
                 a = y1 - y2, b = x2 - x1;
@@ -135,7 +136,7 @@ void MyLine::ScanConversion(CDC *pDC)
                         ++x;
                         d += d1;
                     }
-                    else    // 取右上方像素
+                    else    // 取右下方像素
                     {
                         ++x, --y;
                         d += d2;
@@ -154,7 +155,7 @@ void MyLine::ScanConversion(CDC *pDC)
                 y2 = m_y1;
             }
 
-            if (x2 > x1)    // 斜率为正
+            if (x2 >= x1)    // 斜率非负
             {
                 int a, b, d, d1, d2, x, y;
                 a = x1 - x2, b = y2 - y1;
@@ -164,7 +165,7 @@ void MyLine::ScanConversion(CDC *pDC)
                 pDC->SetPixel(x, y, RGB(0, 255, 0));
                 while (y < y2)
                 {
-                    if (d >= 0)   // 取右方像素
+                    if (d >= 0)   // 取上方像素
                     {
                         ++y;
                         d += d1;
@@ -187,12 +188,12 @@ void MyLine::ScanConversion(CDC *pDC)
                 pDC->SetPixel(x, y, RGB(0, 255, 0));
                 while (y < y2)
                 {
-                    if (d <= 0)   // 取右方像素
+                    if (d <= 0)   // 取上方像素
                     {
                         ++y;
                         d += d1;
                     }
-                    else    // 取右上方像素
+                    else    // 取左上方像素
                     {
                         ++y, --x;
                         d += d2;
@@ -202,13 +203,99 @@ void MyLine::ScanConversion(CDC *pDC)
             }
         }
     }
-    else if (3 == m_type)
+    else if (3 == m_type)   // Bresenham
     {
+        if (abs(x1 - x2) >= abs(y1 - y2))    // 斜率绝对值小于等于1
+        {
+            if (x1 > x2)
+            {
+                x1 = x2;
+                y1 = y2;
+                x2 = m_x1;
+                y2 = m_y1;
+            }
 
+            int dx = x2 - x1, dy = y2 - y1;
+            int two_dx = 2 * dx, two_dy = 2 * dy;
+            int x, y = y1;
+
+            if (dy >= 0)
+            {
+                int e = -dx;
+                for (x = x1; x <= x2; ++x)
+                {
+                    pDC->SetPixel(x, y, RGB(255, 0, 0));
+                    e += two_dy;
+                    if (e >= 0)
+                    {
+                        ++y;
+                        e -= two_dx;
+                    }
+                }
+            }
+            else
+            {
+                int e = dx;
+                for (x = x1; x <= x2; ++x)
+                {
+                    pDC->SetPixel(x, y, RGB(255, 0, 0));
+                    e += two_dy;
+                    if (e <= 0)
+                    {
+                        --y;
+                        e += two_dx;
+                    }
+                }
+            }
+        }
+        else    // 斜率绝对值大于1
+        {
+            if (y1 > y2)
+            {
+                x1 = x2;
+                y1 = y2;
+                x2 = m_x1;
+                y2 = m_y1;
+            }
+
+            int dx = x2 - x1, dy = y2 - y1;
+            int two_dx = 2 * dx, two_dy = 2 * dy;
+            int x = x1, y;
+
+            if (dx >= 0)   // 斜率非负
+            {
+                int e = -dy;
+                for (y = y1; y <= y2; ++y)
+                {
+                    pDC->SetPixel(x, y, RGB(0, 255, 0));
+                    e += two_dx;
+                    if (e >= 0)
+                    {
+                        ++x;
+                        e -= two_dy;
+                    }
+                }
+            }
+            else    // 斜率为负
+            {
+                int e = dy;
+                for (y = y1; y <= y2; ++y)
+                {
+                    pDC->SetPixel(x, y, RGB(0, 255, 0));
+                    e += two_dx;
+                    if (e <= 0)
+                    {
+                        --x;
+                        e += two_dy;
+                    }
+                }
+            }
+        }
     }
     else
     {
-
+        pDC->MoveTo(x1, y1);
+        pDC->LineTo(x2, y2);
     }
 }
 
