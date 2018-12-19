@@ -25,9 +25,9 @@ class MyLine : public MyFigure
 public:
 	MyLine(int x1, int y1, 
 		int x2, int y2,
-        int type = 0);	
-    void ScanConversion(CDC *pDC);
+        int type = 0);
 public:
+    void ScanConversion(CDC *pDC);
 	void Draw(CDC *pDC);
 private:
 	int m_x1, m_y1,	// 起点
@@ -47,6 +47,23 @@ public:
 private:
 	int m_x1, m_y1,	// 椭圆最左、最上
 		m_x2, m_y2;	// 椭圆最右、最下
+};
+
+
+// 圆
+class MyCircle : public MyFigure
+{
+public:
+    MyCircle(int x1, int y1,
+        int x2, int y2,
+        int type = 0);
+public:
+    void ScanConversion(CDC *pDC);
+    void Draw(CDC *pDC);
+private:
+    int m_x0, m_y0; // 圆心
+    int m_radius;     // 半径
+    int m_type;     // 扫描转换方法
 };
 
 

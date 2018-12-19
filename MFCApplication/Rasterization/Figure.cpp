@@ -311,6 +311,56 @@ void MyEllipse::Draw(CDC *pDC)
 }
 
 
+// MyEllipse类的实现
+
+MyCircle::MyCircle(int x1, int y1, int x2, int y2, int type)
+{
+    if (abs(x2 - x1) <= abs(y2 - y1))
+    {
+        m_radius = abs(x2 - x1) / 2;
+        m_x0 = (x1 + x2) / 2;
+        m_y0 = y1 + (y2 > y1 ? 1 : -1) * m_radius;
+    }
+    else
+    {
+        m_radius = abs(y2 - y1) / 2;
+        m_x0 = x1 + (x2 > x1 ? 1 : -1) * m_radius;
+        m_y0 = (y1 + y2) / 2;
+    }
+    
+    m_type = type;
+}
+
+void MyCircle::Draw(CDC *pDC)
+{
+    this->ScanConversion(pDC);
+}
+
+void MyCircle::ScanConversion(CDC *pDC)
+{
+    if (0 == m_type)
+    {
+        pDC->Ellipse(m_x0 - m_radius, m_y0 - m_radius, m_x0 + m_radius, m_y0 + m_radius);
+    }
+    else if (1 == m_type)   // 中点画圆法
+    {
+
+    }
+    else if (2 == m_type)   // Bresenham画圆法
+    {
+
+    }
+    else if (3 == m_type)   // 正负法
+    {
+
+    }
+    else
+    {
+
+    }
+}
+
+
 // MyRect类的实现
 
 MyRect::MyRect(int x1, int y1, int x2, int y2)
